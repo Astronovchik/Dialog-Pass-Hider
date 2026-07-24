@@ -9,4 +9,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = "AuthMePasswordMask"
+rootProject.name = "DialogPassHider"
+
+include "legacy-old"
+include "legacy-new"
+include "modern"

@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "dialog_pass_hider:font/eye_icons.png",
+      "ascent": 13,
+      "height": 16,
+      "chars": [
+        "\ue000\ue001"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "dialog_pass_hider.config.title": "Dialog Pass Hider",
+  "dialog_pass_hider.config.mask_symbol": "Password masking symbol",
+  "dialog_pass_hider.config.preview": "Preview: %s",
+  "dialog_pass_hider.config.reset": "Reset",
+  "dialog_pass_hider.eye.show": "Show password",
+  "dialog_pass_hider.eye.hide": "Hide password"
+}

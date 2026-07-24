@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "ru.anton.dialogpasshider.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "DialogControlsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

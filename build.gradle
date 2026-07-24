@@ -1,45 +1,37 @@
 plugins {
-    id "net.fabricmc.fabric-loom-remap" version "${loom_version}"
+    id "net.fabricmc.fabric-loom-remap" version "${loom_version}" apply false
+    id "net.fabricmc.fabric-loom" version "${loom_version}" apply false
 }
 
-version = project.mod_version
-group = project.maven_group
+allprojects {
+    group = rootProject.maven_group
+    version = rootProject.mod_version
 
-base {
-    archivesName = "authme-password-mask"
-}
-
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        "authme_password_mask" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
+    repositories {
+        maven {
+            name = "TerraformersMC"
+            url = "https://maven.terraformersmc.com/"
         }
     }
 }
 
-dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+tasks.register("clean", Delete) {
+    delete layout.buildDirectory
+    delete subprojects.collect { it.layout.buildDirectory }
 }
 
-processResources {
-    inputs.property "version", project.version
+tasks.register("collectJars", Copy) {
+    dependsOn subprojects.collect { "${it.path}:build" }
 
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
+    from(subprojects.collect { it.layout.buildDirectory.dir("libs") }) {
+        include "*.jar"
+        exclude "*-sources.jar", "*-dev.jar"
     }
+    into layout.buildDirectory.dir("libs")
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.release = 21
-}
-
-java {
-    withSourcesJar()
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+tasks.register("build") {
+    group = "build"
+    description = "Builds all supported Minecraft variants and collects their distributable JARs."
+    dependsOn "collectJars"
 }

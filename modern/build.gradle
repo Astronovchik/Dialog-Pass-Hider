@@ -1,0 +1,50 @@
+plugins {
+    id "net.fabricmc.fabric-loom"
+}
+
+base {
+    archivesName = "dialog-pass-hider"
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "dialog_pass_hider" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+sourceSets {
+    main.java.srcDir rootProject.file("common/src/main/java")
+    client.resources.srcDir rootProject.file("common/src/client/resources")
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.findProperty("modern_minecraft") ?: "26.1"}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    compileOnly "com.terraformersmc:modmenu:18.0.0"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 25
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+tasks.named("jar") {
+    archiveFileName = "dialog-pass-hider-${project.version}-mc26.1-26.2.jar"
+}

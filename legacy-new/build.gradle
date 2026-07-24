@@ -1,0 +1,52 @@
+plugins {
+    id "net.fabricmc.fabric-loom-remap"
+}
+
+base {
+    archivesName = "dialog-pass-hider"
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "dialog_pass_hider" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+sourceSets {
+    main.java.srcDir rootProject.file("common/src/main/java")
+    client.java.srcDir rootProject.file("legacy-common/src/client/java")
+    client.resources.srcDir rootProject.file("common/src/client/resources")
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.findProperty("legacy_new_minecraft") ?: "1.21.9"}"
+    mappings "net.fabricmc:yarn:${project.findProperty("legacy_new_yarn") ?: "1.21.9+build.1"}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modCompileOnly "com.terraformersmc:modmenu:16.0.1"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+tasks.named("remapJar") {
+    archiveFileName = "dialog-pass-hider-${project.version}-mc1.21.9-1.21.11.jar"
+}

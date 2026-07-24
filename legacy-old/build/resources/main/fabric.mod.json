@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "dialog_pass_hider",
+  "version": "2.1.0",
+  "name": "Dialog Pass Hider",
+  "description": "Hides password and confirmation fields in server dialogs.",
+  "authors": [
+    "anton"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "modmenu": [
+      "ru.anton.dialogpasshider.client.DialogPassHiderModMenu"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "dialog-pass-hider.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": ">=1.21.6 <=1.21.8",
+    "java": ">=21"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}
