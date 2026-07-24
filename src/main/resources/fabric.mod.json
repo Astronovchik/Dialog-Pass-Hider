@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "authme_password_mask",
+  "version": "${version}",
+  "name": "AuthMe Password Mask",
+  "description": "Visually masks AuthMe password fields in Minecraft dialogs.",
+  "authors": [
+    "anton"
+  ],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "mixins": [
+    {
+      "config": "authme-password-mask.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~1.21.11",
+    "java": ">=21"
+  }
+}
