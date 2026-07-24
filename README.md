@@ -1,40 +1,46 @@
 # Dialog Pass Hider
 
-Клиентский Fabric-мод, который скрывает пароли в диалогах входа и регистрации.
-Маскирование применяется и к полю `password`, и к следующему за ним полю
-подтверждения (`confirm`). Справа от каждого парольного поля есть кнопка-глаз,
-которая временно показывает или снова скрывает введённый текст.
+<p align="center">
+  <a href="#english">English</a>
+  ·
+  <a href="#русский">Русский</a>
+</p>
 
-Интерфейс и подсказки переведены на русский и английский. Язык выбирается
-автоматически вместе с языком Minecraft; для остальных языков используется
-английский вариант.
+---
 
-Мод меняет только отображение: исходный пароль остаётся в поле и отправляется
-серверу без изменений.
+<a id="english"></a>
 
-## Поддерживаемые версии
+## English
 
-После сборки в `build/libs` появляются три файла:
+**Dialog Pass Hider** is a client-side Fabric mod that hides passwords in login and registration dialogs.
+
+Masking is applied both to the `password` field and to the confirmation field that follows it, usually named `confirm`.
+
+Each password field has an eye button on the right side that temporarily shows or hides the entered text.
+
+The interface and tooltips are available in English and Russian. The language is selected automatically based on the current Minecraft language. English is used as a fallback for all other languages.
+
+The mod changes only how the password is displayed. The original value remains unchanged and is sent to the server normally.
+
+### Supported versions
+
+After building the project, three files are created in `build/libs`:
 
 - `dialog-pass-hider-2.1.0-mc1.21.6-1.21.8.jar`
 - `dialog-pass-hider-2.1.0-mc1.21.9-1.21.11.jar`
 - `dialog-pass-hider-2.1.0-mc26.1-26.2.jar`
 
-Нужно установить только один JAR, соответствующий версии Minecraft.
+Install only the JAR that matches your Minecraft version.
 
-## Настройка символа
+### Mask character configuration
 
-Если установлен Mod Menu, откройте настройки **Dialog Pass Hider** и задайте
-один символ маскирования. По умолчанию используется `*`. Mod Menu является
-необязательной зависимостью: без него скрытие пароля и кнопка-глаз работают,
-но изменить символ через интерфейс нельзя.
+When Mod Menu is installed, open the **Dialog Pass Hider** settings and select a single masking character.
 
-Настройка хранится в `config/dialog-pass-hider.properties`.
+The default character is `*`.
 
-## Сборка
+Mod Menu is an optional dependency. Password masking and the eye button work without it, but the masking character cannot be changed through the interface.
 
-Требуется JDK 25 или новее:
+The configuration is stored in:
 
-```shell
-./gradlew clean build
-```
+```text
+config/dialog-pass-hider.properties
